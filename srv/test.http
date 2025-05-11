@@ -1,0 +1,13 @@
+GET http://localhost:4004/odata/v4/my/CUST
+###
+POST http://localhost:4004/odata/v4/my/CUST
+Content-Type: application/json
+
+        {
+            "COUNTRY": "Japan",
+            "CURRENCY": "JPY",
+            "CUSTID": 12,
+            "GENDER": "male",
+            "NAME": "Danish2"
+            
+        }

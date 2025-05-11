@@ -1,0 +1,1 @@
+using MyService as service from '../../srv/test_srv';
