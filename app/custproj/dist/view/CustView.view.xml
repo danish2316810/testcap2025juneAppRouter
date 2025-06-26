@@ -1,0 +1,32 @@
+<mvc:View controllerName="app.custproj.controller.CustView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form">
+    <Page id="page" title="{i18n>title}">
+
+        <f:SimpleForm editable="true">
+            <Label text="COUNTRY" />
+            <Input id="countryInput" width="250px" />
+
+            <Label text="CURRENCY" />
+            <Input id="currencyInput" width="250px" />
+
+            <Label text="CUSTID" />
+            <Input id="custIdInput" width="250px" />
+
+            <Label text="Gender" />
+            <Input id="dInput" width="250px" />
+
+            <Label text="NAME" />
+            <Input id="nameInput" width="250px" />
+
+            
+        </f:SimpleForm>
+         <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button text="Submit" press="onSubmit" />
+                <ToolbarSpacer />
+            </OverflowToolbar>
+
+    </Page>
+</mvc:View>
