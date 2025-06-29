@@ -27,6 +27,12 @@
     "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
   },
   "cds": {
+    "server": {
+      "body_parser": {
+        "limit": "50mb"
+      },
+      "index": true
+    },
     "auth": "none",
     "sql": {
       "native_hana_associations": false

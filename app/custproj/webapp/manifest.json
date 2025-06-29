@@ -7,6 +7,7 @@
     "applicationVersion": {
       "version": "0.0.1"
     },
+    
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
     "resources": "resources.json",
@@ -127,5 +128,9 @@
       "id": "App",
       "async": true
     }
-  }
+  },
+  "sap.cloud": {
+  "public": true,
+  "service": "testmay11Approuter"
+}
 }

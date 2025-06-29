@@ -1,25 +1,25 @@
 _schema-version: "3.3.0"
 ID: testmay11
 description: A simple CAP project.
-version: 1.0.0
+version: 1.1.0
 
 modules:
 # 1. Approuter
-- name: testmay11-approuter
-  type: approuter.nodejs
-  path: app
-  requires:
-    - name: testmay11-html5-runtime
-    - name: testmay11-auth
-    - name: srv-api
-      group: destinations
-      properties:
-        name: srv-api
-        url: ~{srv-url}
-        forwardAuthToken: true
-    - name: testmay11-destination-service
-  parameters:
-    memory: 512MB
+# - name: testmay11-approuter
+#   type: approuter.nodejs
+#   path: app
+#   requires:
+#     - name: testmay11-html5-runtime
+#     - name: testmay11-auth
+#     - name: srv-api
+#       group: destinations
+#       properties:
+#         name: srv-api
+#         url: ~{srv-url}
+#         forwardAuthToken: true
+#     - name: testmay11-destination-service
+#   parameters:
+#     memory: 512MB
 
 # 2. CAP backend service
 - name: testmay11-srv
@@ -28,6 +28,7 @@ modules:
   requires:
     - name: testmay11-db
     - name: testmay11-auth
+    - name: testmay11-destination-service
   provides:
     - name: srv-api
       properties:
@@ -59,6 +60,37 @@ modules:
     build-result: dist
     supported-platforms: []
 
+- name: testmay11-destination-content
+  type: com.sap.application.content
+  requires:
+    - name: testmay11-destination-service
+      parameters:
+        content-target: true
+    - name: testmay11-repo-host
+      parameters:
+        service-key:
+          name: testmay11-html5-repo-host-key
+    - name: testmay11-auth
+      parameters:
+        service-key:
+          name: testmay11-auth-key
+  parameters:
+    content:
+      subaccount:
+        existing_destinations_policy: update
+        destinations:
+          - Name: testmay11Approuter_testmay11_html_repo_host
+            ServiceInstanceName: testmay11-html5-service
+            ServiceKeyName: testmay11-html5-repo-host-key
+            sap.cloud.service: testmay11Approuter
+          - Name: testmay11Approuter_testmay11_auth
+            Authentication: OAuth2UserTokenExchange
+            ServiceInstanceName: testmay11-auth
+            ServiceKeyName: testmay11_html_repo_host-key
+            sap.cloud.service: testmay11Approuter
+  build-parameters:
+    no-source: true
+
 # 5. HTML5 Application Content Deployer
 - name: testmay11-app-content
   type: com.sap.application.content
@@ -87,6 +119,7 @@ resources:
 - name: testmay11-auth
   type: org.cloudfoundry.managed-service
   parameters:
+    path: ./xs-security.json
     service: xsuaa
     service-plan: application
     config:
@@ -116,7 +149,7 @@ resources:
     service-name: testmay11-destination-service
     service-plan: lite
     config:
-      HTML5Runtime_enabled: false
+      HTML5Runtime_enabled: true
       init_data:
         instance:
           destinations:
@@ -125,8 +158,20 @@ resources:
               ProxyType: Internet
               Type: HTTP
               Authentication: NoAuthentication
+            - Name: testmay11-srv-api
+              URL: ~{srv-api/srv-url}
+              ProxyType: Internet
+              Type: HTTP
+              Authentication: NoAuthentication
+              HTML5.DynamicDestination: true
+              HTML5.ForwardAuthToken: true
           existing_destinations_policy: update
-      version: 1.0.0
+        version: 1.0.0
+  requires:
+    - name: srv-api
+
+
+   
 
 parameters:
   deploy_mode: html5-repo
