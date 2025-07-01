@@ -1,7 +1,7 @@
 using {db} from '../db/test';
 
-
-service MyService {
+@path: 'MY'
+service MYSERVICE {
 
     entity CUST as projection on db.CUSTOMERS;
 

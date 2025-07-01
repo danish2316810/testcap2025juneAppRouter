@@ -33,11 +33,18 @@
       },
       "index": true
     },
-    "auth": "none",
+    "auth": {
+    "passport": {
+      "strategy": "JWT"
+    }
+  },
     "sql": {
       "native_hana_associations": false
     },
     "requires": {
+      "uaa": {
+        "kind": "xsuaa"
+      },
       "db": {
         "kind": "hana"
       },

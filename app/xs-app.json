@@ -1,11 +1,11 @@
 {
-  "welcomeFile": "/index.html",
+  "welcomeFile": "/apps/appcustproj/index.html",
   "authenticationMethod": "route",
   "routes": [
     {
       "source": "^/~(.*)~/odata/(.*)$",
       "target": "/odata/$2",
-      "destination": "testmay11-srv-api",
+      "destination": "srv-api",
       "authenticationType": "xsuaa"
     },
     

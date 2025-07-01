@@ -6,7 +6,7 @@
     {
       "source": "^/odata/(.*)$",
       "target": "/odata/$1",
-      "destination": "testmay11-srv-api",
+      "destination": "srv-api",
       "authenticationType": "xsuaa"
     },
     {

@@ -1,25 +1,25 @@
 _schema-version: "3.3.0"
 ID: testmay11
 description: A simple CAP project.
-version: 1.1.0
+version: 1.1.8
 
 modules:
 # 1. Approuter
-# - name: testmay11-approuter
-#   type: approuter.nodejs
-#   path: app
-#   requires:
-#     - name: testmay11-html5-runtime
-#     - name: testmay11-auth
-#     - name: srv-api
-#       group: destinations
-#       properties:
-#         name: srv-api
-#         url: ~{srv-url}
-#         forwardAuthToken: true
-#     - name: testmay11-destination-service
-#   parameters:
-#     memory: 512MB
+- name: testmay11-approuter
+  type: approuter.nodejs
+  path: app
+  requires:
+    - name: testmay11-html5-runtime
+    - name: testmay11-auth
+    - name: srv-api
+      group: destinations
+      properties:
+        name: srv-api
+        url: ~{srv-url}
+        forwardAuthToken: true
+    - name: testmay11-destination-service
+  parameters:
+    memory: 512MB
 
 # 2. CAP backend service
 - name: testmay11-srv
@@ -74,6 +74,7 @@ modules:
       parameters:
         service-key:
           name: testmay11-auth-key
+    - name: srv-api 
   parameters:
     content:
       subaccount:
@@ -82,12 +83,22 @@ modules:
           - Name: testmay11Approuter_testmay11_html_repo_host
             ServiceInstanceName: testmay11-html5-service
             ServiceKeyName: testmay11-html5-repo-host-key
-            sap.cloud.service: testmay11Approuter
+            sap.cloud.service: testmay11App
           - Name: testmay11Approuter_testmay11_auth
             Authentication: OAuth2UserTokenExchange
             ServiceInstanceName: testmay11-auth
             ServiceKeyName: testmay11_html_repo_host-key
-            sap.cloud.service: testmay11Approuter
+            sap.cloud.service: testmay11App
+            # added by danish ali when html5 deployed app was not talking to the backend start
+          - Name: srv-api
+            URL: ~{srv-api/srv-url}
+            Authentication: OAuth2UserTokenExchange
+            TokenServiceInstanceName: testmay11-auth
+            TokenServiceKeyName: testmay11-auth-key
+            sap.cloud.service: testmay11App
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            # added by danish ali when html5 deployed app was not talking to the backend end
   build-parameters:
     no-source: true
 
@@ -158,13 +169,7 @@ resources:
               ProxyType: Internet
               Type: HTTP
               Authentication: NoAuthentication
-            - Name: testmay11-srv-api
-              URL: ~{srv-api/srv-url}
-              ProxyType: Internet
-              Type: HTTP
-              Authentication: NoAuthentication
-              HTML5.DynamicDestination: true
-              HTML5.ForwardAuthToken: true
+           
           existing_destinations_policy: update
         version: 1.0.0
   requires:
