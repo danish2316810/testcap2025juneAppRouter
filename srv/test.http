@@ -11,3 +11,12 @@ Content-Type: application/json
             "NAME": "Danish2"
             
         }
+###
+POST http://localhost:4004/odata/v4/my/Customers
+Content-Type: application/json
+
+{
+  "CustomerName": "Danish",
+  "City": "Delhi",
+  "country_code": "IN"
+}
