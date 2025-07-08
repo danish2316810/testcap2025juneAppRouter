@@ -24,7 +24,8 @@
     "watch-custproj": "cds watch --open custproj/webapp/index.html?sap-ui-xx-viewCache=false",
     "undeploy": "cf undeploy testmay11 --delete-services --delete-service-keys --delete-service-brokers",
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
-    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "watch-listreportcust": "cds watch --open listreportcust/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "server": {
@@ -34,10 +35,10 @@
       "index": true
     },
     "auth": {
-    "passport": {
-      "strategy": "JWT"
-    }
-  },
+      "passport": {
+        "strategy": "JWT"
+      }
+    },
     "sql": {
       "native_hana_associations": false
     },
@@ -52,5 +53,8 @@
         "deploy-format": "hdbtable"
       }
     }
-  }
+  },
+  "sapux": [
+    "app/listreportcust"
+  ]
 }

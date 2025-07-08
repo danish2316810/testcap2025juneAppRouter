@@ -1,0 +1,266 @@
+_schema-version: 3.3.0
+ID: opex-ds-usib
+description: opex-ds-usib US Ice Box - BTP Extensibility.
+version: 1.0.1
+modules:
+- name: opex-ds-usib-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: opex-ds-usib-db
+  - name: opex-ds-usib-uaa
+  - name: opex-ds-usib-destination
+  - name: opex-ds-usib-objectstore
+  - name: opex-ds-usib-job
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    readiness-health-check-http-endpoint: /health
+    readiness-health-check-type: http
+  build-parameters:
+    builder: npm
+- name: opex-ds-usib-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: opex-ds-usib-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: opex-ds-usib-app-deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: opex-ds-usib-hrh
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - opexdsusibopexdsusibtabs.zip
+      name: opexdsusibopexdsusibtabs
+      target-path: resources/
+    - artifacts:
+      - opexdsusibopexdsusibmaterials.zip
+      name: opexdsusibopexdsusibmaterials
+      target-path: resources/
+    - artifacts:
+      - opexdsusibopexdsusibplants.zip
+      name: opexdsusibopexdsusibplants
+      target-path: resources/
+    - artifacts:
+      - opexdsusibopexdsusibospsitedescription.zip
+      name: opexdsusibopexdsusibospsitedescription
+      target-path: resources/
+    - artifacts:
+      - opexdsusibopexdsusibcontractdetails.zip
+      name: opexdsusibopexdsusibcontractdetails
+      target-path: resources/
+    - artifacts:
+      - opexdsusibopexdsusibterminalmasters.zip
+      name: opexdsusibopexdsusibterminalmasters
+      target-path: resources/
+    - artifacts:
+      - opexdsusibopexdsusibcontracts.zip
+      name: opexdsusibopexdsusibcontracts
+      target-path: resources/
+    - artifacts:
+      - opexdsusibopexdsusibnominationerrors.zip
+      name: opexdsusibopexdsusibnominationerrors
+      target-path: resources/
+    - artifacts:
+      - opexdsusibopexdsusibcontracterrors.zip
+      name: opexdsusibopexdsusibcontracterrors
+      target-path: resources/
+- name: opex-ds-usib-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: opex-ds-usib-destination
+    parameters:
+      content-target: true
+  - name: opex-ds-usib-hrh # repo host service
+    parameters:
+      service-key:
+        name: opex-ds-usib-hrh-key
+  - name: opex-ds-usib-uaa
+    parameters:
+      service-key:
+        name: opex-ds-usib-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: OPEX_DS_USIB_HRH
+          ServiceInstanceName: opex-ds-usib-hrh
+          ServiceKeyName: opex-ds-usib-hrh-key
+          sap.cloud.service: opex-ds-usib
+        - Authentication: OAuth2UserTokenExchange
+          Name: OPEX_DS_USIB_UAA
+          ServiceInstanceName: opex-ds-usib-uaa
+          ServiceKeyName: opex-ds-usib-uaa-key
+          sap.cloud.service: opex-ds-usib
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: opexdsusibopexdsusibtabs
+  type: html5
+  path: app/opex-ds-usib-tabs
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: opexdsusibopexdsusibmaterials
+  type: html5
+  path: app/opex-ds-usib-materials
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: opexdsusibopexdsusibplants
+  type: html5
+  path: app/opex-ds-usib-plants
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: opexdsusibopexdsusibospsitedescription
+  type: html5
+  path: app/opex-ds-usib-ospsitedescription
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: opexdsusibopexdsusibcontractdetails
+  type: html5
+  path: app/opex-ds-usib-contractdetails
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: opexdsusibopexdsusibterminalmasters
+  type: html5
+  path: app/opex-ds-usib-terminalmasters
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: opexdsusibopexdsusibcontracts
+  type: html5
+  path: app/opex-ds-usib-contracts
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: opexdsusibopexdsusibnominationerrors
+  type: html5
+  path: app/opex-ds-usib-nominationerrors
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: opexdsusibopexdsusibcontracterrors
+  type: html5
+  path: app/opex-ds-usib-contracterrors
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: opex-ds-usib-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: opex-ds-usib-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: opex-ds-usib-uaa
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: opex-ds-usib-destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+    service: destination
+    service-name: opex-ds-usib-destination
+    service-plan: lite
+  requires:
+  - name: srv-api
+- name: opex-ds-usib-hrh   # repo host service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: opex-ds-usib-objectstore
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: objectstore
+    service-name: opex-ds-usib-objectstore
+    service-plan: standard
+- name: opex-ds-usib-job
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      enable-xsuaa-support: true
+    service: jobscheduler
+    service-name: opex-ds-usib-job
+    service-plan: standard
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom 
+    commands:
+    - npm ci
+    - npx cds build --production
