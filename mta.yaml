@@ -1,7 +1,7 @@
 _schema-version: "3.3.0"
 ID: testmay11
 description: A simple CAP project.
-version: 1.1.24
+version: 1.1.25
 
 modules:
 # 1. Approuter
@@ -87,7 +87,7 @@ modules:
           - Name: testmay11Approuter_testmay11_auth
             Authentication: OAuth2UserTokenExchange
             ServiceInstanceName: testmay11-auth
-            ServiceKeyName: testmay11_html_repo_host-key
+            ServiceKeyName: testmay11-auth-key
             sap.cloud.service: testmay11App
             # added by danish ali when html5 deployed app was not talking to the backend start
           - Name: srv-api

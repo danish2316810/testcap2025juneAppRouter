@@ -1,0 +1,45 @@
+
+Srivastava, Deepika S SBOBNG-PTIY/AT/GE
+0 minutes 20 seconds0:20
+Srivastava, Deepika S SBOBNG-PTIY/AT/GE 0 minutes 20 seconds
+So we have 3 endpoints over here, 3 service endpoints and X ref. B to B technical and error management. Now the X ref is the cross reference tables that we are making over there.
+Srivastava, Deepika S SBOBNG-PTIY/AT/GE 0 minutes 37 seconds
+The X ref service will hold all the cross reference tables that are displayed over here. So if we go to the X ref.
+Srivastava, Deepika S SBOBNG-PTIY/AT/GE 0 minutes 47 seconds
+And if I open it.
+Srivastava, Deepika S SBOBNG-PTIY/AT/GE 0 minutes 51 seconds
+Cured.
+
+Srivastava, Deepika S SBOBNG-PTIY/AT/GE
+31 minutes 54 seconds31:54
+Srivastava, Deepika S SBOBNG-PTIY/AT/GE 31 minutes 54 seconds
+No, no. Before you join before you join, there was a discussion with the CPI team and steps. Yeah, yeah, yeah.
+AS
+Ali, Danish SOMIBM-PTIY/AP/F
+31 minutes 56 seconds31:56
+Ali, Danish SOMIBM-PTIY/AP/F 31 minutes 56 seconds
+Oh, before before I join. Oh alright so.
+
+Srivastava, Deepika S SBOBNG-PTIY/AT/GE
+32 minutes 2 seconds32:02
+Srivastava, Deepika S SBOBNG-PTIY/AT/GE 32 minutes 2 seconds
+Yeah. Then in that discussion, I was there. So I know what you were talking about.
+AS
+Ali, Danish SOMIBM-PTIY/AP/F
+32 minutes 3 seconds32:03
+Ali, Danish SOMIBM-PTIY/AP/F 32 minutes 3 seconds
+So.
+Ali, Danish SOMIBM-PTIY/AP/F 32 minutes 8 seconds
+Oh, right. All right, great. Yeah. So you see whatever brief Johnny gave me. You know, after that, I sat and thought over it, and then so many questions came like whether these systems are already in place or not.
+
+Srivastava, Deepika S SBOBNG-PTIY/AT/GE
+32 minutes 9 seconds32:09
+Srivastava, Deepika S SBOBNG-PTIY/AT/GE 32 minutes 9 seconds
+Speaking there.
+Srivastava, Deepika S SBOBNG-PTIY/AT/GE 32 minutes 20 seconds
+Mm hmm.
+AS
+Ali, Danish SOMIBM-PTIY/AP/F
+32 minutes 23 seconds32:23
+Ali, Danish SOMIBM-PTIY/AP/F 32 minutes 23 seconds
+If they aren't, then I was supposed to. How are so, which is why I asked this question. You know, how does this CPI talk to the CAP layer and?
