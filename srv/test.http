@@ -1,14 +1,35 @@
+
+GET http://localhost:4004/odata/v4/interfaceService/$metadata
+###
+POST http://localhost:4004/odata/v4/interfaceService/interfaceData
+Content-Type: application/json
+
+{
+  "sourceSystem": "orcale",
+  "fCode": "E004"
+}
+###
+POST http://localhost:4004/odata/v4/interfaceService/ErrorCodes
+Content-Type: application/json
+
+{
+  "errorCode": "E003",
+  "message": "Timeout error 2"
+}
+
+
+###
 GET http://localhost:4004/odata/v4/my/CUST
 ###
 POST http://localhost:4004/odata/v4/MY/CUST
 Content-Type: application/json
 
         {
-            "COUNTRY": "Japan",
-            "CURRENCY": "JPY",
-            "CUSTID": 120,
+            "COUNTRY": "china",
+            "CURRENCY": "yen",
+            "CUSTID": 1287,
             "GENDER": "male",
-            "NAME": "Danish2"
+            "NAME": "manish"
             
         }
 ###
